@@ -72,7 +72,7 @@ uninstallDocker() {
     pip uninstall -y docker-compose
 
     # Uninstall Docker CE
-    apt-get remove -y docker-ce
+    sudo apt-get remove -y docker-ce
 
     # We will not remove the supporting programs in case another package uses them
 }
