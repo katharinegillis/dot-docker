@@ -69,7 +69,7 @@ installDocker() {
 
 uninstallDocker() {
     # Uninstall Docker Compose
-    pip uninstall docker-compose
+    pip uninstall -y docker-compose
 
     # Uninstall Docker CE
     apt-get remove -y docker-ce
