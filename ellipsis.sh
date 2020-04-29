@@ -1,21 +1,34 @@
 #!/usr/bin/env bash
 
+pkg.link() {
+    fs.link_files files
+}
+
 pkg.install() {
-    pkg.pull
+    # Install docker
+    installDocker
 }
 
 pkg.pull() {
-    echo -e "\e[32mUpdating docker...\e[0m"
+    # Unlink old files
+    hooks.unlink
+
+    # Pull package changes
+    git.pull
+
+    # Link new files
+    pkg.link
 
     # Install docker
-    docker_install
-
-    fs.link_files files
-
-    echo -e "\e[32mDone docker.\e[0m"
+    installDocker
 }
 
-docker_install() {
+pkg.uninstall() {
+    # Remove docker
+    uninstallDocker
+}
+
+installDocker() {
     # Install Docker's package dependencies.
     sudo apt-get install -y \
         apt-transport-https \
@@ -52,4 +65,14 @@ docker_install() {
 
     # Install Docker Compose into your user's home directory.
     pip install --user docker-compose
+}
+
+uninstallDocker() {
+    # Uninstall Docker Compose
+    pip uninstall docker-compose
+
+    # Uninstall Docker CE
+    apt-get remove -y docker-ce
+
+    # We will not remove the supporting programs in case another package uses them
 }
