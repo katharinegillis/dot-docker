@@ -31,8 +31,7 @@ sudo apt-get install -y docker-ce
 # Allow your user to access the Docker CLI without needing root access.
 sudo usermod -aG docker $USER
 
-# Install Python and PIP.
-sudo apt-get install -y python python-pip
-
-# Install Docker Compose into your user's home directory.
-pip install --user docker-compose
+# Install docker-compose
+sudo apt-get install jq
+sudo curl --silent "https://api.github.com/repos/docker/compose/releases/latest" | jq --arg PLATFORM_ARCH "$(echo `uname -s`-`uname -m`)" -r '.assets[] | select(.name | endswith($PLATFORM_ARCH)).browser_download_url' | xargs sudo curl -L -o /usr/local/bin/docker-compose --url
+sudo chmod +x /usr/local/bin/docker-compose
