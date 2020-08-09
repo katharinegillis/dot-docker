@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# Set up the connection to Docker Desktop
-export DOCKER_HOST=tcp://localhost:2375
-
 # Set up aliases for the common commands
 alias dc=docker-compose
 alias d=docker
