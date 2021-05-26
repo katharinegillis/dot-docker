@@ -1,5 +1,5 @@
 # katharinegillis/docker
-Just a bunch of dotfiles.
+Install docker cli and docker-compose.
 
 ## Install
 Clone and symlink or install with [ellipsis][ellipsis]:
