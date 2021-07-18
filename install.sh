@@ -2,6 +2,18 @@
 
 SYSTEM=$3
 
+
+if [ "$SYSTEM" == "wsl" ]; then
+    choco.exe install docker-desktop -y
+    touch .restart.lock
+    exit
+elif [ "$SYSTEM" == "mac" ]; then
+    brew install --cask docker
+    open /Applications/Docker.app
+    echo "Please follow the prompts to get Docker Desktop running, then press any key to continue."
+    read -r var
+fi
+
 if [ "$SYSTEM" != "mac" ]; then
     # Install Docker's package dependencies.
     sudo apt-get install -y \
@@ -32,12 +44,10 @@ if [ "$SYSTEM" != "mac" ]; then
     sudo apt-get install -y docker-ce
 
     # Allow your user to access the Docker CLI without needing root access.
-    sudo usermod -aG docker $USER
+    sudo usermod -aG docker "$USER"
 
     # Install docker-compose
     sudo apt-get install -y jq
     sudo curl --silent "https://api.github.com/repos/docker/compose/releases/latest" | jq --arg PLATFORM_ARCH "$(echo `uname -s`-`uname -m`)" -r '.assets[] | select(.name | endswith($PLATFORM_ARCH)).browser_download_url' | xargs sudo curl -L -o /usr/local/bin/docker-compose --url
     sudo chmod +x /usr/local/bin/docker-compose
-else
-    echo -e "\e[33m No docker to install for MacOS. These commands come with Docker Desktop."
 fi

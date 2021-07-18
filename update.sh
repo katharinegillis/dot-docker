@@ -2,6 +2,12 @@
 
 SYSTEM=$3
 
+if [ "$SYSTEM" == "wsl" ]; then
+    echo "Please upgrade via Docker Desktop instead of Chocolatey."
+elif [ "$SYSTEM" == "mac" ]; then
+    brew upgrade --cask docker
+fi
+
 if [ "$SYSTEM" != "mac" ]; then
     # Install the latest version of Docker CE.
     sudo apt-get install -y docker-ce
@@ -10,8 +16,6 @@ if [ "$SYSTEM" != "mac" ]; then
     sudo apt-get install -y jq
     sudo curl --silent "https://api.github.com/repos/docker/compose/releases/latest" | jq --arg PLATFORM_ARCH "$(echo `uname -s`-`uname -m`)" -r '.assets[] | select(.name | endswith($PLATFORM_ARCH)).browser_download_url' | xargs sudo curl -L -o /usr/local/bin/docker-compose --url
     sudo chmod +x /usr/local/bin/docker-compose
-else
-    echo -e "\e[33m No docker to update for MacOS. These commands update with Docker Desktop."
 fi
 
 # Ask about cleaning dangling images
