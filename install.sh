@@ -45,7 +45,7 @@ if [ "$SYSTEM" != "mac" ]; then
 
     # Allow your user to access the Docker CLI without needing root access.
     sudo groupadd docker
-    sudo usermod -aG docker "$USER"
+    sudo usermod -aG docker "${USER}"
 
     # Install docker-compose
     sudo apt-get install -y jq
