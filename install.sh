@@ -44,6 +44,7 @@ if [ "$SYSTEM" != "mac" ]; then
     sudo apt-get install -y docker-ce
 
     # Allow your user to access the Docker CLI without needing root access.
+    sudo groupadd docker
     sudo usermod -aG docker "$USER"
 
     # Install docker-compose
