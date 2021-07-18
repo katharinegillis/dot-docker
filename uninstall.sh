@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 
-# Uninstall Docker Compose
-sudo rm -rf /usr/local/bin/docker-compose
+SYSTEM=$3
 
-# Uninstall Docker CE
-sudo apt-get remove -y docker-ce jq
+if [ "$SYSTEM" != "mac" ]; then
+    # Uninstall Docker Compose
+    sudo rm -rf /usr/local/bin/docker-compose
 
-# We will not remove the supporting programs in case another package uses them
+    # Uninstall Docker CE
+    sudo apt-get remove -y docker-ce jq
+else
+    echo -e "\e[33m No docker to uninstall for MacOS. These commands uninstall with Docker Desktop."
+fi
