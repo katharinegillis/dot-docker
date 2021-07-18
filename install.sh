@@ -43,9 +43,6 @@ if [ "$SYSTEM" != "mac" ]; then
     # Install the latest version of Docker CE.
     sudo apt-get install -y docker-ce
 
-    # Run the installer a second time to force it to get the docker service up and running (issue on Ubuntu)
-    sudo apt-get install -y docker-ce
-
     # Allow your user to access the Docker CLI without needing root access.
     sudo groupadd docker
     sudo usermod -aG docker "$USER"
@@ -54,4 +51,7 @@ if [ "$SYSTEM" != "mac" ]; then
     sudo apt-get install -y jq
     sudo curl --silent "https://api.github.com/repos/docker/compose/releases/latest" | jq --arg PLATFORM_ARCH "$(echo `uname -s`-`uname -m`)" -r '.assets[] | select(.name | endswith($PLATFORM_ARCH)).browser_download_url' | xargs sudo curl -L -o /usr/local/bin/docker-compose --url
     sudo chmod +x /usr/local/bin/docker-compose
+
+    # Run the installer a second time to force it to get the docker service up and running (issue on Ubuntu)
+    sudo apt-get install -y docker-ce
 fi
