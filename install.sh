@@ -43,6 +43,9 @@ if [ "$SYSTEM" != "mac" ]; then
     # Install the latest version of Docker CE.
     sudo apt-get install -y docker-ce
 
+    # Run the installer a second time to force it to get the docker service up and running (issue on Ubuntu)
+    sudo apt-get install -y docker-ce
+
     # Allow your user to access the Docker CLI without needing root access.
     sudo groupadd docker
     sudo usermod -aG docker "$USER"
