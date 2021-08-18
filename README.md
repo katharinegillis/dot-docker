@@ -1,11 +1,5 @@
 # katharinegillis/docker
-Install docker cli and docker-compose.
+Install docker cli and docker-compose. Also installs Docker Desktop if on Mac or Windows.
 
 ## Install
-Clone and symlink or install with [ellipsis][ellipsis]:
-
-```
-$ ellipsis install katharinegillis/docker
-```
-
-[ellipsis]: http://ellipsis.sh
+Installs via the [katharinegillis/dot-desktop](https://github.com/katharinegillis/dot-desktop).
