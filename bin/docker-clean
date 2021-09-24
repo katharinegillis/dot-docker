@@ -1,6 +1,3 @@
 #!/usr/bin/env bash
 
-images=$(docker images -f "dangling=true" -q)
-if [ "$images" ]; then
-    docker rmi "$images"
-fi
+docker system prune

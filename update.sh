@@ -19,10 +19,10 @@ if [ "$SYSTEM" != "mac" ]; then
 fi
 
 # Ask about cleaning dangling images
-echo "Would you like to clean up dangling images? [y/n]"
+echo "Would you like to clean up docker? [y/n]"
 read -r answer
 if [ "$answer" == "y" ]; then
   "$HOME/bin/docker-clean"
 else
-  echo "Skipping cleaning of dangling images - if you wish to clean them manually, run the docker-clean script."
+  echo "Skipping cleaning of ocker - if you wish to clean it manually, run the docker-clean script."
 fi
