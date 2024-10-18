@@ -5,3 +5,5 @@ sudo rm -rf /usr/local/bin/docker-compose
 
 # Uninstall Docker CE
 sudo apt-get remove -y docker-ce jq
+
+sudo apt-get -y autoremove

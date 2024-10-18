@@ -39,3 +39,4 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 # Run the installer a second time to force it to get the docker service up and running (issue on Ubuntu)
 sudo apt-get install -y docker-ce
+sudo apt-get -y autoremove
